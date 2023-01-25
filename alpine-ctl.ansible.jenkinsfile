@@ -1,0 +1,18 @@
+pipeline {
+ 
+  agent { label 'alipne_controller' }
+
+  stages {
+
+    stage('Version') {
+      steps {
+        sh '''
+          ansible --version
+          ansible-playbook --version
+          ansible-galaxy --version
+        '''
+      }
+    }
+
+  }
+}

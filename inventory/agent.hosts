@@ -1,0 +1,10 @@
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[jenkins-agent]
+centos-agent
+debian-agent
+ubuntu-agent
+
+[dind]
+jenkins-docker
