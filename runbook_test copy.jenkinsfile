@@ -3,6 +3,9 @@ pipeline {
   agent { label 'alpine_controller' }
   environment {
    ANSIBLE_PRIVATE_KEY=credentials('mariadb-private-key') 
+       DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key')
+    UBUNTU_PRIVATE_KEY=credentials('ubuntu_ssh_key') 
+
   }
   stages {
     stage('Hello') {
