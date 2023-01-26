@@ -1,12 +1,27 @@
 
 pipeline {
+
   agent { label 'alpine_controller' }
+  
+  environment {
+    CENTOS_PRIVATE_KEY=credentials('centos_ssh_key') 
+    DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key') 
+    UBUNTU_PRIVATE_KEY=credentials('ubuntu_ssh_key') 
+  }
+
+  options { skipDefaultCheckout(true) }
+  
   stages {
-    stage('Firewall Test') {
+    stage('CentOS test') {
+      
       steps {
         sh 'ansible-galaxy collection install -r requirements.yml'
-        sh 'ansible-playbook -i inventory/agent.hosts playbooks/firewall_test.yml'
+        sh 'ansible-playbook -i inventory/agent.hosts[centos-agent] --private-key=$CENTOS_PRIVATE_KEY playbooks/firewall_test.yml'
       }
+    
     }
   }
+
+  post { always { cleanWs() } }
+
 }
