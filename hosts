@@ -1,0 +1,11 @@
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[centos-agent]
+centos-agent ansible_ssh_host=172.22.0.5 ansible_ssh_port=22 ansible_user=centos
+
+[debian-agent]
+debian-agent ansible_ssh_host=172.22.0.3 ansible_ssh_port=22 ansible_user=debian
+
+[ubuntu-agent]
+ubuntu-agent ansible_ssh_host=172.22.0.2 ansible_ssh_port=22 ansible_user=ubuntu
