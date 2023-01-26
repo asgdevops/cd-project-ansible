@@ -27,7 +27,7 @@ pipeline {
       
       steps {
         sh 'ansible-galaxy collection install -r requirements.yml'
-        sh 'ansible-playbook -i inventory/agent.hosts["centos-agent"] --private-key=$CENTOS_PRIVATE_KEY playbooks/firewall_test.yml'
+        sh 'ansible-playbook -i centos-agent --private-key=$CENTOS_PRIVATE_KEY playbooks/firewall_test.yml'
       }
     
     }
