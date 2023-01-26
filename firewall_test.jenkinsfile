@@ -4,8 +4,8 @@ pipeline {
   agent { label 'alpine_controller' }
   
   environment {
-    CENTOS_PRIVATE_KEY=credentials('centos_ssh_key') 
-    DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key') 
+    CENTOS_PRIVATE_KEY=credentials('centos_ssh_key'), 
+    DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key'),
     UBUNTU_PRIVATE_KEY=credentials('ubuntu_ssh_key') 
   }
 
