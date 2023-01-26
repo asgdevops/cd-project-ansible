@@ -6,6 +6,3 @@ centos-agent ansible_ssh_host=centos-agent ansible_ssh_port=22 ansible_user=cent
 
 [debian-agent]
 debian-agent ansible_ssh_host=debian-agent ansible_ssh_port=22 ansible_user=debian
-
-[ubuntu-agent]
-ubuntu-agent ansible_ssh_host=ubuntu-agent ansible_ssh_port=22 ansible_user=ubuntu
