@@ -5,6 +5,7 @@ pipeline {
   
   environment {
     CENTOS_PRIVATE_KEY=credentials('centos_ssh_key') 
+    DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key') 
   }
 
   options { skipDefaultCheckout(true) }
@@ -23,10 +24,18 @@ pipeline {
       }
     }    
 
-    stage('hello') {
+    stage('requirements') {
       steps {
         sh 'ansible-galaxy collection install -r requirements.yml'
-        sh 'ansible-playbook -i inventory/hosts --private-key=$CENTOS_PRIVATE_KEY playbooks/hello.yml'
+      }
+    }
+
+    stage('hello') {
+      steps {
+        sh 'ansible-playbook -i "centos-agent," --private-key=$CENTOS_PRIVATE_KEY playbooks/hello.yml'
+      }
+      steps {
+        sh 'ansible-playbook -i "cedebian-agent," --private-key=$DEBIAN_PRIVATE_KEY playbooks/hello.yml'
       }
     }
 
