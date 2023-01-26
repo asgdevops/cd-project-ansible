@@ -1,5 +1,5 @@
 - name: Agent check
-  hosts: centos-agent
+  hosts: "{{target_host}}"
   become: yes
   tasks:
     - name: enable and start firewalld service
