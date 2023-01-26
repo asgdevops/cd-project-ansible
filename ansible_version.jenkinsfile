@@ -1,6 +1,6 @@
 pipeline {
  
-  agent { label 'alipne_controller' }
+  agent { label 'alpine_controller' }
   
   options { skipDefaultCheckout(true) }
   
