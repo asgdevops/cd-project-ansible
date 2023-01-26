@@ -1,8 +1,16 @@
 pipeline {
  
   agent { label 'alipne_controller' }
-
+  
+  options { skipDefaultCheckout(true) }
+  
   stages {
+
+    stage('clean workspace') {
+      steps {
+        cleanWs()
+      }
+    }
 
     stage('Version') {
       steps {
@@ -13,6 +21,12 @@ pipeline {
         '''
       }
     }
+
+  post {
+    always {
+      cleanWs()
+    }
+  }
 
   }
 }
