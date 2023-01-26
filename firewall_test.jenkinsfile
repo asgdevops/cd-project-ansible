@@ -1,0 +1,12 @@
+
+pipeline {
+  agent { label 'alpine_controller' }
+  stages {
+    stage('Firewall Test') {
+      steps {
+        sh 'ansible-galaxy collection install -r requirements.yml'
+        sh 'ansible-playbook -i inventory/agent.hosts playbooks/firewall_test.yml'
+      }
+    }
+  }
+}
