@@ -1,0 +1,15 @@
+all:
+  hosts:
+    127.0.0.1:
+  children:
+    agents:
+      hosts:
+        centos-agent:
+          ansible_port: 22
+          ansible_host: 172.22.0.5
+        debian-agent:
+          ansible_port: 22
+          ansible_host: 172.22.0.3
+        ubuntu-agent:
+          ansible_port: 22
+          ansible_host: 172.22.0.2
