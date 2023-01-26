@@ -3,6 +3,10 @@ pipeline {
 
   agent { label 'alpine_controller' }
   
+  environment {
+    CENTOS_PRIVATE_KEY=credentials('centos_ssh_key') 
+  }
+
   options { skipDefaultCheckout(true) }
   
   stages {
@@ -22,7 +26,7 @@ pipeline {
     stage('hello') {
       steps {
         sh 'ansible-galaxy collection install -r requirements.yml'
-        sh 'ansible-playbook -i inventory/hosts playbooks/hello.yml'
+        sh 'ansible-playbook -i inventory/hosts --private-key=$CENTOS_PRIVATE_KEY playbooks/hello.yml'
       }
     }
 
