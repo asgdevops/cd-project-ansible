@@ -33,8 +33,6 @@ pipeline {
     stage('hello') {
       steps {
         sh 'ansible-playbook -i "centos-agent," --private-key=$CENTOS_PRIVATE_KEY playbooks/hello.yml'
-      }
-      steps {
         sh 'ansible-playbook -i "cedebian-agent," --private-key=$DEBIAN_PRIVATE_KEY playbooks/hello.yml'
       }
     }
