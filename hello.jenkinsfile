@@ -2,12 +2,9 @@
 pipeline {
 
   agent { label 'alpine_controller' }
-  
   environment {
-    CENTOS_PRIVATE_KEY=credentials('centos_ssh_key') 
-    DEBIAN_PRIVATE_KEY=credentials('debian_ssh_key') 
+    JENKINS_PRIVATE_KEY=credentials('jenkins_ssh_key') 
   }
-
   options { skipDefaultCheckout(true) }
   
   stages {
@@ -24,15 +21,10 @@ pipeline {
       }
     }    
 
-    stage('requirements') {
-      steps {
-        sh 'ansible-galaxy collection install -r requirements.yml'
-      }
-    }
-
     stage('hello') {
       steps {
-        sh 'ansible-playbook -i inventory/hosts --private-key=[$CENTOS_PRIVATE_KEY,$DEBIAN_PRIVATE_KEY]  playbooks/hello.yml'
+        sh 'ansible-galaxy collection install -r requirements.yml'
+        sh 'ansible-playbook -i inventory/hosts --private-key=$JENKINS_PRIVATE_KEY playbooks/hello.yml'
       }
     }
 
