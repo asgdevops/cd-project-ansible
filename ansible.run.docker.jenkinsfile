@@ -1,7 +1,7 @@
 
 pipeline {
 
-  agent { label 'dind-agent' }
+  agent { label 'build-in_node' }
   environment {
     AGENT_PRIVATE_KEY=credentials('agent_ssh_key') 
   }
