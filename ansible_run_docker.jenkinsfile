@@ -2,15 +2,9 @@
 pipeline {
 
   agent { 
-    docker { image 'python:3.10-alpine' } 
+    dind-agent { image 'python:3.10-alpine' } 
   }
-
-  options { skipDefaultCheckout(true) }
-  
   stages {
-
-    stage('clean workspace') { steps { cleanWs() } }
-    stage('checkout') { steps { checkout scm } }    
 
     stage("version") {
       steps {
@@ -25,7 +19,4 @@ pipeline {
     }
 
   }
-
-  post { always { cleanWs() } }
-
 }
