@@ -1,5 +1,5 @@
 ---
-- hosts: centos-agent
+- hosts: rhel-agent
   tasks:
     - name: Install python 3 and pip3
       yum:

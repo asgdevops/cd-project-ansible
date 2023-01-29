@@ -24,7 +24,7 @@ pipeline {
     stage('hello') {
       steps {
         sh 'ansible-galaxy collection install -r requirements.yml'
-        sh 'ansible-playbook -i inventory/hosts --private-key=$AGENT_PRIVATE_KEY playbooks/hello.yml'
+        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/hello.yml'
       }
     }
 

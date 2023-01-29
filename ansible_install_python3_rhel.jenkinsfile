@@ -23,7 +23,7 @@ pipeline {
 
     stage('installe python rhel') {
       steps {
-        sh 'ansible-playbook -i inventory/hosts --private-key=$AGENT_PRIVATE_KEY playbooks/install_python3_rhel.yml'
+        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/install_python3_rhel.yml'
       }
     }
 
