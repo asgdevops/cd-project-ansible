@@ -1,17 +1,11 @@
 ---
 - hosts: rhel-agents
+  become: true
   tasks:
     - name: Install python 3 and pip3
       yum:
         name:
-          - python3
-          - libselinux-python
-        state: present
-
-    - name: Install SELinux for Python 3
-      pip:
-        name:
-          - selinux
+          - python3-pip
         state: present
         executable: pip3
       vars:
