@@ -2,7 +2,9 @@
 pipeline {
 
   agent { 
-    dind-agent { image 'python:3.10-alpine' } 
+    docker { 
+      image 'python:3.10-alpine' 
+    } 
   }
   stages {
 
