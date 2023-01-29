@@ -1,29 +1,26 @@
 
 pipeline {
 
-  agent { label 'built-in_node' }
-  environment {
-    AGENT_PRIVATE_KEY=credentials('agent_ssh_key') 
+  agent { 
+    docker { image 'python:3.10-alpine' } 
   }
+
   options { skipDefaultCheckout(true) }
   
   stages {
 
-    stage('clean workspace') { 
+    stage('clean workspace') { steps { cleanWs() } }
+    stage('checkout') { steps { checkout scm } }    
+
+    stage("version") {
       steps {
-        cleanWs()
+        sh 'python3 --version'
       }
     }
 
-    stage('checkout') {
+    stage("hello") {
       steps {
-        checkout scm
-      }
-    }    
-
-    stage('hello') {
-      steps {
-        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/run_docker.yml'
+        sh 'python3 hello_world.py'
       }
     }
 
