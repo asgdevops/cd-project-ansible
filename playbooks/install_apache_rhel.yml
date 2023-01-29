@@ -1,5 +1,6 @@
 ---
-- hosts: rhel-agents
+- name: Install Apache on RHEL like systems
+  hosts: rhel-agents
   become: true
   tasks:
     - name: ensure apache is at the latest version
