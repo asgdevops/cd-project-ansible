@@ -1,0 +1,35 @@
+
+pipeline {
+
+  agent { label 'alpine_controller' }
+  environment {
+    AGENT_PRIVATE_KEY=credentials('agent_ssh_key') 
+  }
+  options { skipDefaultCheckout(true) }
+  
+  stages {
+
+    stage('clean workspace') { 
+      steps {
+        cleanWs()
+      }
+    }
+
+    stage('checkout') {
+      steps {
+        checkout scm
+      }
+    }    
+
+    stage('hello') {
+      steps {
+        sh 'ansible-galaxy collection install -r requirements.yml'
+        sh 'ansible-playbook -i inventory/hosts --private-key=$AGENT_PRIVATE_KEY playbooks/hello.yml'
+      }
+    }
+
+  }
+
+  post { always { cleanWs() } }
+
+}
