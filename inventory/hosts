@@ -2,9 +2,15 @@
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [jenkins-agents]
-centos-agent 
+deb-agents
+rhel-agents
+
+[deb-agents]
 debian-agent
 ubuntu-agent
+
+[rhel-agents]
+centos-agent
 
 [jenkins-agents:vars]
 ansible_ssh_port=22 
