@@ -23,7 +23,7 @@ pipeline {
 
     stage('hello') {
       steps {
-        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/install_docker.yml'
+        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/run_docker.yml'
       }
     }
 
