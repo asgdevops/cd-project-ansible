@@ -20,14 +20,8 @@
       pip:
         name: docker
 
-    - name: Pull the official Debian image using the container_image variable. This image will be used in next step.
-      docker_image:
-        name: "hello-world"
-        source: pull
-
     - name: Create "hello-world" container
       docker_container:
         name: "hello-world"
         image: "hello-world"
-        command: "run"
         state: present
