@@ -1,0 +1,10 @@
+---
+- hosts: dind-agent
+  become: true
+
+  tasks:
+    - name: Create "hello-world" container
+      docker_container:
+        name: "hello-world"
+        image: "hello-world"
+        state: present
