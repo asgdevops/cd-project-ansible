@@ -1,0 +1,34 @@
+
+pipeline {
+
+  agent { label 'alpine_controller' }
+  environment {
+    AGENT_PRIVATE_KEY=credentials('agent_ssh_key') 
+  }
+  options { skipDefaultCheckout(true) }
+  
+  stages {
+
+    stage('clean workspace') { 
+      steps {
+        cleanWs()
+      }
+    }
+
+    stage('checkout') {
+      steps {
+        checkout scm
+      }
+    }    
+
+    stage('installe python rhel') {
+      steps {
+        sh 'ansible-playbook -i inventory/hosts.cfg --private-key=$AGENT_PRIVATE_KEY playbooks/install_python3_deb.yml'
+      }
+    }
+
+  }
+
+  post { always { cleanWs() } }
+
+}
