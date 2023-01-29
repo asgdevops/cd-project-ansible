@@ -1,7 +1,7 @@
 
 pipeline {
 
-  agent { label 'alpine_controller' }
+  agent { label 'dind-agent' }
   environment {
     AGENT_PRIVATE_KEY=credentials('agent_ssh_key') 
   }
